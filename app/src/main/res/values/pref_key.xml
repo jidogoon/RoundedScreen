@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="pref_key_round_size">PREF_KEY_ROUND_SIZE</string>
+    <string name="pref_key_round_color">PREF_KEY_ROUND_COLOR</string>
+
+    <string name="pref_key_round_top_left">PREF_KEY_ROUND_TOP_LEFT</string>
+    <string name="pref_key_round_top_right">PREF_KEY_ROUND_TOP_RIGHT</string>
+    <string name="pref_key_round_bottom_left">PREF_KEY_ROUND_BOTTOM_LEFT</string>
+    <string name="pref_key_round_bottom_right">PREF_KEY_ROUND_BOTTOM_RIGHT</string>
+</resources>

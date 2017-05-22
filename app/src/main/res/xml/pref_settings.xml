@@ -1,0 +1,13 @@
+<android.support.v7.preference.PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+    <android.support.v7.preference.PreferenceCategory
+        android:title="@string/pref_cate_name_appearance">
+        <android.support.v7.preference.SeekBarPreference
+            android:key="@string/pref_key_round_size"
+            android:title="@string/pref_title_size"
+            android:max="100"
+            android:defaultValue="30" />
+    </android.support.v7.preference.PreferenceCategory>
+    <android.support.v7.preference.PreferenceCategory
+        android:title="@string/pref_cate_name_settings">
+    </android.support.v7.preference.PreferenceCategory>
+</android.support.v7.preference.PreferenceScreen>

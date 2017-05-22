@@ -1,0 +1,6 @@
+<resources>
+    <string name="app_name">Rounded Screen</string>
+    <string name="pref_cate_name_appearance">Appearance</string>
+    <string name="pref_title_size">Size</string>
+    <string name="pref_cate_name_settings">Settings</string>
+</resources>
