@@ -5,6 +5,7 @@ import android.graphics.PixelFormat
 import android.view.LayoutInflater
 import android.view.View
 import android.view.WindowManager
+import android.widget.RelativeLayout
 import com.jidogoon.roundedscreen.R
 import com.jidogoon.roundedscreen.utils.PreferenceUtils
 
@@ -58,14 +59,40 @@ class RoundedView() {
         vBottomLeft?.visibility = if (options.bottomLeft) View.VISIBLE else View.GONE
         vBottomRight?.visibility = if (options.bottomRight) View.VISIBLE else View.GONE
 
+        val lpTopLeft = vTopLeft?.layoutParams as RelativeLayout.LayoutParams
+        val lpTopRight = vTopRight?.layoutParams as RelativeLayout.LayoutParams
+        val lpBottomLeft = vBottomLeft?.layoutParams as RelativeLayout.LayoutParams
+        val lpBottomRight = vBottomRight?.layoutParams as RelativeLayout.LayoutParams
+        lpTopLeft.width = options.size
+        lpTopLeft.height = options.size
+        lpTopRight.width = options.size
+        lpTopRight.height = options.size
+        lpBottomLeft.width = options.size
+        lpBottomLeft.height = options.size
+        lpBottomRight.width = options.size
+        lpBottomRight.height = options.size
+        vTopLeft.layoutParams = lpTopLeft
+        vTopRight.layoutParams = lpTopRight
+        vBottomLeft.layoutParams = lpBottomLeft
+        vBottomRight.layoutParams = lpBottomRight
+
         val params = WindowManager.LayoutParams(
                 WindowManager.LayoutParams.MATCH_PARENT,
                 WindowManager.LayoutParams.MATCH_PARENT,
                 WindowManager.LayoutParams.TYPE_SYSTEM_OVERLAY,
-                WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE,
+                WindowManager.LayoutParams.FLAG_LAYOUT_IN_SCREEN,
                 PixelFormat.TRANSLUCENT)
-        //params.gravity = Gravity.CENTER
-        val wm  = context?.getSystemService(Context.WINDOW_SERVICE) as WindowManager
+        val wm = context?.getSystemService(Context.WINDOW_SERVICE) as WindowManager
         wm.addView(roundedView, params)
+    }
+
+    fun release() {
+        if (roundedView != null) {
+            val wm = context?.getSystemService(Context.WINDOW_SERVICE) as WindowManager
+            wm.removeView(roundedView)
+            roundedView?.destroyDrawingCache()
+            roundedView = null
+            System.gc()
+        }
     }
 }

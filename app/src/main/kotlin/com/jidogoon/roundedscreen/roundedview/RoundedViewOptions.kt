@@ -23,6 +23,7 @@ class RoundedViewOptions : Parcelable {
         topRight = source.readInt() != 0
         bottomLeft = source.readInt() != 0
         bottomRight = source.readInt() != 0
+        size = source.readInt()
     }
 
     override fun describeContents() = 0
@@ -32,5 +33,6 @@ class RoundedViewOptions : Parcelable {
         dest.writeInt(if (topRight) 1 else 0)
         dest.writeInt(if (bottomLeft) 1 else 0)
         dest.writeInt(if (bottomRight) 1 else 0)
+        dest.writeInt(size)
     }
 }

@@ -28,8 +28,14 @@ class RoundedService: Service() {
         return START_STICKY
     }
 
+    var roundedViewUI: RoundedView? = null
+
     fun showRoundedView(intent: Intent?) {
         val options = intent?.getParcelableExtra<RoundedViewOptions>(INTENT_KEY)
-        val roundedView = RoundedView(applicationContext, options!!)
+        if (roundedViewUI != null) {
+            roundedViewUI?.release()
+            roundedViewUI = null
+        }
+        roundedViewUI = RoundedView(applicationContext, options!!)
     }
 }
