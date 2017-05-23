@@ -1,5 +1,6 @@
 package com.jidogoon.roundedscreen.activity
 
+import android.content.Intent
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.view.MenuItem
@@ -20,5 +21,10 @@ class MainSettingsActivity : AppCompatActivity() {
         if (item.itemId == android.R.id.home)
             finish()
         return super.onOptionsItemSelected(item)
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        supportFragmentManager.fragments[0].onActivityResult(requestCode, resultCode, data)
     }
 }

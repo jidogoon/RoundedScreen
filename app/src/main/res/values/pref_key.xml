@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <string name="pref_key_round_enable">PREF_KEY_ROUND_ENABLE</string>
+    <string name="pref_key_start_on_boot">PREF_KEY_START_ON_BOOT</string>
+
     <string name="pref_key_round_size">PREF_KEY_ROUND_SIZE</string>
     <string name="pref_key_round_color">PREF_KEY_ROUND_COLOR</string>
 

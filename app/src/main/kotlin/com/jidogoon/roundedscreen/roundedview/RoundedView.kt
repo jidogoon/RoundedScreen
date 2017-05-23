@@ -18,12 +18,14 @@ class RoundedView() {
 
     constructor(context: Context) : this() {
         this.context = context
-        setContentView(getOptions())
+        setContentView()
+        invalidate(getOptions())
     }
 
     constructor(context: Context, options: RoundedViewOptions) : this() {
         this.context = context
-        setContentView(options)
+        setContentView()
+        invalidate(options)
     }
 
     private fun getOptions(): RoundedViewOptions {
@@ -46,9 +48,21 @@ class RoundedView() {
         return options
     }
 
-    private fun setContentView(options: RoundedViewOptions) {
+    private fun setContentView() {
         val inflater = LayoutInflater.from(context)
         roundedView = inflater.inflate(R.layout.roundedview, null)
+        val params = WindowManager.LayoutParams(
+                WindowManager.LayoutParams.MATCH_PARENT,
+                WindowManager.LayoutParams.MATCH_PARENT,
+                WindowManager.LayoutParams.TYPE_SYSTEM_OVERLAY,
+                WindowManager.LayoutParams.FLAG_LAYOUT_IN_SCREEN or
+                        WindowManager.LayoutParams.FLAG_LAYOUT_INSET_DECOR,
+                PixelFormat.TRANSLUCENT)
+        val wm = context?.getSystemService(Context.WINDOW_SERVICE) as WindowManager
+        wm.addView(roundedView, params)
+    }
+
+    fun invalidate(options: RoundedViewOptions) {
         val vTopLeft = roundedView?.findViewById(R.id.vTopLeft)
         val vTopRight = roundedView?.findViewById(R.id.vTopRight)
         val vBottomLeft = roundedView?.findViewById(R.id.vBottomLeft)
@@ -75,15 +89,6 @@ class RoundedView() {
         vTopRight.layoutParams = lpTopRight
         vBottomLeft.layoutParams = lpBottomLeft
         vBottomRight.layoutParams = lpBottomRight
-
-        val params = WindowManager.LayoutParams(
-                WindowManager.LayoutParams.MATCH_PARENT,
-                WindowManager.LayoutParams.MATCH_PARENT,
-                WindowManager.LayoutParams.TYPE_SYSTEM_OVERLAY,
-                WindowManager.LayoutParams.FLAG_LAYOUT_IN_SCREEN,
-                PixelFormat.TRANSLUCENT)
-        val wm = context?.getSystemService(Context.WINDOW_SERVICE) as WindowManager
-        wm.addView(roundedView, params)
     }
 
     fun release() {

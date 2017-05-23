@@ -1,6 +1,9 @@
 <resources>
     <string name="app_name">Rounded Screen</string>
+    <string name="pref_cate_name_settings">Basic Settings</string>
+    <string name="pref_title_round_enable">Enable Rounded Screen</string>
+    <string name="pref_title_start_on_boot">Start on Boot</string>
     <string name="pref_cate_name_appearance">Appearance</string>
     <string name="pref_title_size">Size</string>
-    <string name="pref_cate_name_settings">Settings</string>
+    <string name="permission_warning">"Draw over apps" permission has been disabled. You have to grant permission to use rounced screen.</string>
 </resources>

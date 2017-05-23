@@ -1,4 +1,16 @@
-<android.support.v7.preference.PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+<android.support.v7.preference.PreferenceScreen
+    xmlns:android="http://schemas.android.com/apk/res/android">
+    <android.support.v7.preference.PreferenceCategory
+        android:title="@string/pref_cate_name_settings">
+        <android.support.v14.preference.SwitchPreference
+            android:key="@string/pref_key_round_enable"
+            android:title="@string/pref_title_round_enable"
+            android:defaultValue="false" />
+        <android.support.v14.preference.SwitchPreference
+            android:key="@string/pref_key_start_on_boot"
+            android:title="@string/pref_title_start_on_boot"
+            android:defaultValue="false" />
+    </android.support.v7.preference.PreferenceCategory>
     <android.support.v7.preference.PreferenceCategory
         android:title="@string/pref_cate_name_appearance">
         <android.support.v7.preference.SeekBarPreference
@@ -6,8 +18,5 @@
             android:title="@string/pref_title_size"
             android:max="100"
             android:defaultValue="30" />
-    </android.support.v7.preference.PreferenceCategory>
-    <android.support.v7.preference.PreferenceCategory
-        android:title="@string/pref_cate_name_settings">
     </android.support.v7.preference.PreferenceCategory>
 </android.support.v7.preference.PreferenceScreen>
