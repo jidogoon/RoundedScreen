@@ -117,6 +117,7 @@ class SettingsFragment : PreferenceFragmentCompat(), Preference.OnPreferenceClic
                         showOverlaySystemSettings()
                     })
                     .setNegativeButton(android.R.string.cancel, { _, _ ->
+                        prefRoundEnable?.isChecked = false
                     })
                     .setOnCancelListener( { activity.finish() })
                     .create()
