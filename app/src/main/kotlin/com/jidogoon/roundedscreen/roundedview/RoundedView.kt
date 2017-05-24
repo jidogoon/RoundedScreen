@@ -2,6 +2,7 @@ package com.jidogoon.roundedscreen.roundedview
 
 import android.content.Context
 import android.graphics.PixelFormat
+import android.support.annotation.StringRes
 import android.view.LayoutInflater
 import android.view.View
 import android.view.WindowManager
@@ -10,7 +11,7 @@ import com.jidogoon.roundedscreen.R
 import com.jidogoon.roundedscreen.utils.PreferenceUtils
 
 /**
- * Created by dohyunji on 2017. 5. 22..
+ * Created by jidogoon on 2017. 5. 22..
  */
 class RoundedView() {
     var context: Context? = null
@@ -29,23 +30,18 @@ class RoundedView() {
     }
 
     private fun getOptions(): RoundedViewOptions {
+        val ctx = context!!
         val options = RoundedViewOptions()
-        options.topLeft = PreferenceUtils.getAppPreferenceBoolean(context!!,
-                PreferenceUtils.PREF_NAME_ROUNDEDVIEW,
-                PreferenceUtils.PREF_KEY_ROUNDEDVIEW_TOPLEFT, options.topLeft)
-        options.topRight = PreferenceUtils.getAppPreferenceBoolean(context!!,
-                PreferenceUtils.PREF_NAME_ROUNDEDVIEW,
-                PreferenceUtils.PREF_KEY_ROUNDEDVIEW_TOPRIGHT, options.topRight)
-        options.bottomLeft = PreferenceUtils.getAppPreferenceBoolean(context!!,
-                PreferenceUtils.PREF_NAME_ROUNDEDVIEW,
-                PreferenceUtils.PREF_KEY_ROUNDEDVIEW_BOTTOMLEFT, options.bottomLeft)
-        options.bottomRight = PreferenceUtils.getAppPreferenceBoolean(context!!,
-                PreferenceUtils.PREF_NAME_ROUNDEDVIEW,
-                PreferenceUtils.PREF_KEY_ROUNDEDVIEW_BOTTOMRIGHT, options.bottomRight)
-        options.size = PreferenceUtils.getAppPreferenceInt(context!!,
-                PreferenceUtils.PREF_NAME_ROUNDEDVIEW,
-                PreferenceUtils.PREF_KEY_ROUNDEDVIEW_SIZE, options.size)
+        options.topLeft = PreferenceUtils.getSharedPreferenceBoolean(ctx, getString(R.string.pref_key_round_top_left), options.topLeft)
+        options.topRight = PreferenceUtils.getSharedPreferenceBoolean(ctx, getString(R.string.pref_key_round_top_right), options.topRight)
+        options.bottomLeft = PreferenceUtils.getSharedPreferenceBoolean(ctx, getString(R.string.pref_key_round_bottom_left), options.bottomLeft)
+        options.bottomRight = PreferenceUtils.getSharedPreferenceBoolean(ctx, getString(R.string.pref_key_round_bottom_right), options.bottomRight)
+        options.size = PreferenceUtils.getSharedPreferenceInt(ctx, getString(R.string.pref_key_round_size), options.size)
         return options
+    }
+
+    private fun getString(@StringRes resId: Int): String {
+        return context?.getString(resId)!!
     }
 
     private fun setContentView() {

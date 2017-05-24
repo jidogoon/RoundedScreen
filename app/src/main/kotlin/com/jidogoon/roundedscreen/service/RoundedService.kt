@@ -8,7 +8,7 @@ import com.jidogoon.roundedscreen.roundedview.RoundedView
 import com.jidogoon.roundedscreen.roundedview.RoundedViewOptions
 
 /**
- * Created by dohyunji on 2017. 5. 22..
+ * Created by jidogoon on 2017. 5. 22..
  */
 class RoundedService: Service() {
 

@@ -3,7 +3,7 @@ package com.jidogoon.roundedscreen.utils
 import android.content.Context
 
 /**
- * Created by dohyunji on 2017. 5. 22..
+ * Created by jidogoon on 2017. 5. 22..
  */
 class PreferenceUtils {
     companion object {
@@ -16,13 +16,6 @@ class PreferenceUtils {
             val pref = context.getSharedPreferences(key, Context.MODE_PRIVATE)
             return pref.getInt(key, defaultValue)
         }
-
-        val PREF_NAME_ROUNDEDVIEW = "PREF_NAME_ROUNDEDVIEW"
-        val PREF_KEY_ROUNDEDVIEW_TOPLEFT = "PREF_KEY_ROUNDEDVIEW_TOPLEFT"
-        val PREF_KEY_ROUNDEDVIEW_TOPRIGHT = "PREF_KEY_ROUNDEDVIEW_TOPRIGHT"
-        val PREF_KEY_ROUNDEDVIEW_BOTTOMLEFT = "PREF_KEY_ROUNDEDVIEW_BOTTOMLEFT"
-        val PREF_KEY_ROUNDEDVIEW_BOTTOMRIGHT = "PREF_KEY_ROUNDEDVIEW_BOTTOMRIGHT"
-        val PREF_KEY_ROUNDEDVIEW_SIZE = "PREF_KEY_ROUNDEDVIEW_SIZE"
 
         fun setAppPreferenceString(context: Context, prefName: String, key: String, value: String) {
             val pref = context.getSharedPreferences(prefName, Context.MODE_PRIVATE)
