@@ -5,8 +5,18 @@ import android.content.Context
 /**
  * Created by dohyunji on 2017. 5. 22..
  */
-class PreferenceUtils() {
+class PreferenceUtils {
     companion object {
+        fun getSharedPreferenceBoolean(context: Context, key: String, defaultValue: Boolean) : Boolean {
+            val pref = context.getSharedPreferences(key, Context.MODE_PRIVATE)
+            return pref.getBoolean(key, defaultValue)
+        }
+
+        fun getSharedPreferenceInt(context: Context, key: String, defaultValue: Int) : Int {
+            val pref = context.getSharedPreferences(key, Context.MODE_PRIVATE)
+            return pref.getInt(key, defaultValue)
+        }
+
         val PREF_NAME_ROUNDEDVIEW = "PREF_NAME_ROUNDEDVIEW"
         val PREF_KEY_ROUNDEDVIEW_TOPLEFT = "PREF_KEY_ROUNDEDVIEW_TOPLEFT"
         val PREF_KEY_ROUNDEDVIEW_TOPRIGHT = "PREF_KEY_ROUNDEDVIEW_TOPRIGHT"

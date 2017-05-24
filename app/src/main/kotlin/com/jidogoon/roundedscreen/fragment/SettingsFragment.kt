@@ -8,9 +8,7 @@ import android.provider.Settings
 import android.support.annotation.RequiresApi
 import android.support.v14.preference.SwitchPreference
 import android.support.v7.app.AlertDialog
-import android.support.v7.preference.Preference
-import android.support.v7.preference.PreferenceFragmentCompat
-import android.support.v7.preference.SeekBarPreference
+import android.support.v7.preference.*
 import android.widget.Toast
 import com.jidogoon.roundedscreen.R
 import com.jidogoon.roundedscreen.roundedview.RoundedViewOptions
@@ -23,16 +21,23 @@ class SettingsFragment : PreferenceFragmentCompat(), Preference.OnPreferenceClic
 
     var prefRoundEnable: SwitchPreference? = null
     var prefStartOnBoot: SwitchPreference? = null
-    var prefSize: SeekBarPreference? = null
+    var prefCateAppearance: PreferenceCategory? = null
 
     override fun onCreatePreferences(savedInstanceState: Bundle?, rootKey: String?) {
         addPreferencesFromResource(R.xml.pref_settings)
         prefRoundEnable = findPreference(getString(R.string.pref_key_round_enable)) as SwitchPreference?
         prefStartOnBoot = findPreference(getString(R.string.pref_key_start_on_boot)) as SwitchPreference?
-        prefSize = findPreference(getString(R.string.pref_key_round_size)) as SeekBarPreference?
+        prefCateAppearance = findPreference(getString(R.string.pref_cate_key_appearance)) as PreferenceCategory
         prefRoundEnable?.onPreferenceChangeListener = this
         prefStartOnBoot?.onPreferenceChangeListener = this
-        prefSize?.onPreferenceChangeListener = this
+
+        findPreference(getString(R.string.pref_key_round_size)).onPreferenceChangeListener = this
+        findPreference(getString(R.string.pref_key_round_top_left)).onPreferenceChangeListener = this
+        findPreference(getString(R.string.pref_key_round_top_right)).onPreferenceChangeListener = this
+        findPreference(getString(R.string.pref_key_round_bottom_left)).onPreferenceChangeListener = this
+        findPreference(getString(R.string.pref_key_round_bottom_right)).onPreferenceChangeListener = this
+
+        findPreference(getString(R.string.pref_key_github)).onPreferenceClickListener = this
     }
 
     override fun onPreferenceChange(preference: Preference?, newValue: Any?): Boolean {
@@ -53,21 +58,54 @@ class SettingsFragment : PreferenceFragmentCompat(), Preference.OnPreferenceClic
             tryStartRoundedService(options)
             return true
         }
+        else if (preference?.key.equals(getString(R.string.pref_key_round_top_left))) {
+            options.topLeft = newValue as Boolean
+            (preference as CheckBoxPreference).isChecked = newValue
+            tryStartRoundedService(options)
+        }
+        else if (preference?.key.equals(getString(R.string.pref_key_round_top_right))) {
+            options.topRight = newValue as Boolean
+            (preference as CheckBoxPreference).isChecked = newValue
+            tryStartRoundedService(options)
+        }
+        else if (preference?.key.equals(getString(R.string.pref_key_round_bottom_left))) {
+            options.bottomLeft = newValue as Boolean
+            (preference as CheckBoxPreference).isChecked = newValue
+            tryStartRoundedService(options)
+        }
+        else if (preference?.key.equals(getString(R.string.pref_key_round_bottom_right))) {
+            options.bottomRight = newValue as Boolean
+            (preference as CheckBoxPreference).isChecked = newValue
+            tryStartRoundedService(options)
+        }
         return false
     }
 
     override fun onPreferenceClick(preference: Preference?): Boolean {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        if (preference?.key.equals(getString(R.string.pref_key_github))) {
+            val intent = Intent(Intent.ACTION_VIEW, Uri.parse(getString(R.string.github_url)))
+            activity.startActivity(intent)
+            return true
+        }
+        return false
     }
 
     override fun onResume() {
         super.onResume()
+        if (!prefRoundEnable?.isChecked!!) {
+            stopRoundedService()
+            return
+        }
         tryStartRoundedService(getOptions())
     }
 
     fun getOptions(): RoundedViewOptions {
         val options = RoundedViewOptions()
-        options.size = prefSize!!.value
+        options.size = (findPreference(getString(R.string.pref_key_round_size)) as SeekBarPreference).value
+        options.topLeft = (findPreference(getString(R.string.pref_key_round_top_left)) as CheckBoxPreference).isChecked
+        options.topRight = (findPreference(getString(R.string.pref_key_round_top_right)) as CheckBoxPreference).isChecked
+        options.bottomLeft = (findPreference(getString(R.string.pref_key_round_bottom_left)) as CheckBoxPreference).isChecked
+        options.bottomRight = (findPreference(getString(R.string.pref_key_round_bottom_right)) as CheckBoxPreference).isChecked
         return options
     }
 
@@ -79,7 +117,6 @@ class SettingsFragment : PreferenceFragmentCompat(), Preference.OnPreferenceClic
                         showOverlaySystemSettings()
                     })
                     .setNegativeButton(android.R.string.cancel, { _, _ ->
-                        activity.finish()
                     })
                     .setOnCancelListener( { activity.finish() })
                     .create()
@@ -94,14 +131,16 @@ class SettingsFragment : PreferenceFragmentCompat(), Preference.OnPreferenceClic
         intent.putExtra(RoundedService.INTENT_KEY, options)
         context.startService(intent)
         prefRoundEnable?.isChecked = true
-        prefSize?.isEnabled = true
+        prefStartOnBoot?.isEnabled = true
+        prefCateAppearance?.isEnabled = true
     }
 
     fun stopRoundedService() {
         val intent = Intent(context, RoundedService::class.java)
         context.stopService(intent)
         prefRoundEnable?.isChecked = false
-        prefSize?.isEnabled = false
+        prefStartOnBoot?.isEnabled = false
+        prefCateAppearance?.isEnabled = false
     }
 
     ///////////////////////////////////////

@@ -12,11 +12,38 @@
             android:defaultValue="false" />
     </android.support.v7.preference.PreferenceCategory>
     <android.support.v7.preference.PreferenceCategory
+        android:key="@string/pref_cate_key_appearance"
         android:title="@string/pref_cate_name_appearance">
         <android.support.v7.preference.SeekBarPreference
             android:key="@string/pref_key_round_size"
             android:title="@string/pref_title_size"
             android:max="100"
             android:defaultValue="30" />
+        <android.support.v7.preference.CheckBoxPreference
+            android:key="@string/pref_key_round_top_left"
+            android:title="@string/pref_title_top_left"
+            android:defaultValue="true" />
+        <android.support.v7.preference.CheckBoxPreference
+            android:key="@string/pref_key_round_top_right"
+            android:title="@string/pref_title_top_right"
+            android:defaultValue="true" />
+        <android.support.v7.preference.CheckBoxPreference
+            android:key="@string/pref_key_round_bottom_left"
+            android:title="@string/pref_title_bottom_left"
+            android:defaultValue="true" />
+        <android.support.v7.preference.CheckBoxPreference
+            android:key="@string/pref_key_round_bottom_right"
+            android:title="@string/pref_title_bottom_right"
+            android:defaultValue="true" />
+    </android.support.v7.preference.PreferenceCategory>
+    <android.support.v7.preference.PreferenceCategory
+        android:title="@string/pref_cate_name_about">
+        <android.support.v7.preference.Preference
+            android:title="@string/pref_title_appname"
+            android:summary="@string/pref_summary_appname" />
+        <android.support.v7.preference.Preference
+            android:key="@string/pref_key_github"
+            android:title="@string/pref_title_github"
+            android:summary="@string/github_url" />
     </android.support.v7.preference.PreferenceCategory>
 </android.support.v7.preference.PreferenceScreen>
