@@ -10,9 +10,9 @@
     <string name="pref_title_bottom_left">Bottom Left</string>
     <string name="pref_title_bottom_right">Bottom Right</string>
     <string name="pref_cate_name_about">About</string>
-    <string name="pref_title_appname">Rounded Screen written in Kotlin</string>
-    <string name="pref_summary_appname">\@jidogoon on github</string>
-    <string name="pref_title_github">on GitHub</string>
-    <string name="github_url">https://github.com/jidogoon/RoundedScreen</string>
+    <string name="pref_title_appname" translatable="false">Rounded Screen written in Kotlin</string>
+    <string name="pref_summary_appname" translatable="false">\@jidogoon on github</string>
+    <string name="pref_title_github" translatable="false">on GitHub</string>
+    <string name="github_url" translatable="false">https://github.com/jidogoon/RoundedScreen</string>
     <string name="permission_warning">"Draw over apps" permission has been disabled. You have to grant permission to use rounded screen.</string>
 </resources>

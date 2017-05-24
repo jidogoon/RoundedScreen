@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="pref_key_round_enable">PREF_KEY_ROUND_ENABLE</string>
-    <string name="pref_key_start_on_boot">PREF_KEY_START_ON_BOOT</string>
+    <string name="pref_key_round_enable" translatable="false">PREF_KEY_ROUND_ENABLE</string>
+    <string name="pref_key_start_on_boot" translatable="false">PREF_KEY_START_ON_BOOT</string>
 
-    <string name="pref_cate_key_appearance">PREF_CATE_KEY_APPEARANCE</string>
-    <string name="pref_key_round_size">PREF_KEY_ROUND_SIZE</string>
-    <string name="pref_key_round_color">PREF_KEY_ROUND_COLOR</string>
-    <string name="pref_key_round_top_left">PREF_KEY_ROUND_TOP_LEFT</string>
-    <string name="pref_key_round_top_right">PREF_KEY_ROUND_TOP_RIGHT</string>
-    <string name="pref_key_round_bottom_left">PREF_KEY_ROUND_BOTTOM_LEFT</string>
-    <string name="pref_key_round_bottom_right">PREF_KEY_ROUND_BOTTOM_RIGHT</string>
+    <string name="pref_cate_key_appearance" translatable="false">PREF_CATE_KEY_APPEARANCE</string>
+    <string name="pref_key_round_size" translatable="false">PREF_KEY_ROUND_SIZE</string>
+    <string name="pref_key_round_color" translatable="false">PREF_KEY_ROUND_COLOR</string>
+    <string name="pref_key_round_top_left" translatable="false">PREF_KEY_ROUND_TOP_LEFT</string>
+    <string name="pref_key_round_top_right" translatable="false">PREF_KEY_ROUND_TOP_RIGHT</string>
+    <string name="pref_key_round_bottom_left" translatable="false">PREF_KEY_ROUND_BOTTOM_LEFT</string>
+    <string name="pref_key_round_bottom_right" translatable="false">PREF_KEY_ROUND_BOTTOM_RIGHT</string>
 
-    <string name="pref_key_github">PREF_KEY_GITHUB</string>
+    <string name="pref_key_github" translatable="false">PREF_KEY_GITHUB</string>
 </resources>

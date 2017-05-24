@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">丸い角</string>
+    <string name="permission_warning">\"他のアプリの上に重ねて表示\"の設定がオフになっています。丸い角を使用するには、この設定を変更してください。</string>
+    <string name="pref_cate_name_about">アプリ情報</string>
+    <string name="pref_cate_name_appearance">角の設定</string>
+    <string name="pref_cate_name_settings">基本設定</string>
+    <string name="pref_title_top_left">左上</string>
+    <string name="pref_title_top_right">右上</string>
+    <string name="pref_title_bottom_left">左下</string>
+    <string name="pref_title_bottom_right">右下</string>
+    <string name="pref_title_round_enable">丸い角オン</string>
+    <string name="pref_title_size">角サイズ</string>
+    <string name="pref_title_start_on_boot">起動時に自動起動</string>
+</resources>

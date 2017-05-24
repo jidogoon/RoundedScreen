@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">둥근모서리</string>
+    <string name="permission_warning">\"다른 앱 위에 그리기\" 설정이 꺼져있습니다. 둥근모서리를 사용하려면 이 설정을 반드시 켜야 합니다.</string>
+    <string name="pref_cate_name_settings">기본 설정</string>
+    <string name="pref_cate_name_appearance">모서리 설정</string>
+    <string name="pref_title_bottom_left">좌측 하단</string>
+    <string name="pref_title_bottom_right">우측 하단</string>
+    <string name="pref_title_round_enable">둥근모서리 켜기</string>
+    <string name="pref_title_size">모서리 크기</string>
+    <string name="pref_title_start_on_boot">부팅시 자동 시작</string>
+    <string name="pref_title_top_left">좌측 상단</string>
+    <string name="pref_title_top_right">우측 상단</string>
+    <string name="pref_cate_name_about">앱 정보</string>
+</resources>
