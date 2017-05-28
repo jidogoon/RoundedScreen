@@ -50,7 +50,6 @@ class SettingsFragment : PreferenceFragmentCompat(), Preference.OnPreferenceClic
             return true
         }
         else if (preference?.key.equals(getString(R.string.pref_key_start_on_boot))) {
-            Toast.makeText(context, "Not implemented yet", Toast.LENGTH_SHORT).show()
             return true
         }
         else if (preference?.key.equals(getString(R.string.pref_key_round_size))) {

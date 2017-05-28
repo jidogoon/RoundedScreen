@@ -1,6 +1,7 @@
 package com.jidogoon.roundedscreen.utils
 
 import android.content.Context
+import android.support.v7.preference.PreferenceManager
 
 /**
  * Created by jidogoon on 2017. 5. 22..
@@ -8,12 +9,12 @@ import android.content.Context
 class PreferenceUtils {
     companion object {
         fun getSharedPreferenceBoolean(context: Context, key: String, defaultValue: Boolean) : Boolean {
-            val pref = context.getSharedPreferences(key, Context.MODE_PRIVATE)
+            val pref = PreferenceManager.getDefaultSharedPreferences(context)
             return pref.getBoolean(key, defaultValue)
         }
 
         fun getSharedPreferenceInt(context: Context, key: String, defaultValue: Int) : Int {
-            val pref = context.getSharedPreferences(key, Context.MODE_PRIVATE)
+            val pref = PreferenceManager.getDefaultSharedPreferences(context)
             return pref.getInt(key, defaultValue)
         }
 

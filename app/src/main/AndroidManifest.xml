@@ -3,6 +3,7 @@
     package="com.jidogoon.roundedscreen">
 
     <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
 
     <application
         android:allowBackup="true"
@@ -25,10 +26,11 @@
             android:enabled="true"
             android:exported="false" />
         <receiver
-            android:name=".receiver.PackageReplacedReceiver"
+            android:name=".receiver.RoundBroadcastReceiver"
             android:enabled="true">
             <intent-filter>
                 <action android:name="android.intent.action.MY_PACKAGE_REPLACED" />
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
             </intent-filter>
         </receiver>
     </application>
