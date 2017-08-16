@@ -14,18 +14,21 @@ import com.jidogoon.roundedscreen.utils.PreferenceUtils
 class RoundBroadcastReceiver : BroadcastReceiver() {
     val TAG = javaClass.simpleName!!
     override fun onReceive(context: Context?, intent: Intent?) {
-        if (intent?.action.equals(Intent.ACTION_MY_PACKAGE_REPLACED)) {
-            Log.d(TAG, "onPackageReplaced")
-            val serviceIntent = Intent(context, RoundedService::class.java)
-            context?.startService(serviceIntent)
-        } else if (intent?.action.equals(Intent.ACTION_BOOT_COMPLETED)) {
-            val startService = PreferenceUtils.getSharedPreferenceBoolean(context!!,
-                            context.getString(R.string.pref_key_start_on_boot), false)
-            Log.d(TAG, "onBootCompleted: " + startService)
-            if (!startService)
-                return
-            val serviceIntent = Intent(context, RoundedService::class.java)
-            context.startService(serviceIntent)
+        when (intent?.action) {
+            Intent.ACTION_MY_PACKAGE_REPLACED -> {
+                Log.d(TAG, "onPackageReplaced")
+                val serviceIntent = Intent(context, RoundedService::class.java)
+                context?.startService(serviceIntent)
+            }
+            Intent.ACTION_BOOT_COMPLETED -> {
+                val startService = PreferenceUtils.getSharedPreferenceBoolean(context!!,
+                        context.getString(R.string.pref_key_start_on_boot), false)
+                Log.d(TAG, "onBootCompleted: " + startService)
+                if (!startService)
+                    return
+                val serviceIntent = Intent(context, RoundedService::class.java)
+                context.startService(serviceIntent)
+            }
         }
     }
 }

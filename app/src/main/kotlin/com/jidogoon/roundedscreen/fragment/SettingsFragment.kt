@@ -42,40 +42,42 @@ class SettingsFragment : PreferenceFragmentCompat(), Preference.OnPreferenceClic
 
     override fun onPreferenceChange(preference: Preference?, newValue: Any?): Boolean {
         val options = getOptions()
-        if (preference?.key.equals(getString(R.string.pref_key_round_enable))) {
-            if (newValue as Boolean)
+        when (preference?.key) {
+            getString(R.string.pref_key_round_enable) -> {
+                if (newValue as Boolean)
+                    tryStartRoundedService(options)
+                else
+                    stopRoundedService()
+                return true
+            }
+            getString(R.string.pref_key_start_on_boot) -> {
+                return true
+            }
+            getString(R.string.pref_key_round_size) -> {
+                options.size = newValue as Int
                 tryStartRoundedService(options)
-            else
-                stopRoundedService()
-            return true
-        }
-        else if (preference?.key.equals(getString(R.string.pref_key_start_on_boot))) {
-            return true
-        }
-        else if (preference?.key.equals(getString(R.string.pref_key_round_size))) {
-            options.size = newValue as Int
-            tryStartRoundedService(options)
-            return true
-        }
-        else if (preference?.key.equals(getString(R.string.pref_key_round_top_left))) {
-            options.topLeft = newValue as Boolean
-            (preference as CheckBoxPreference).isChecked = newValue
-            tryStartRoundedService(options)
-        }
-        else if (preference?.key.equals(getString(R.string.pref_key_round_top_right))) {
-            options.topRight = newValue as Boolean
-            (preference as CheckBoxPreference).isChecked = newValue
-            tryStartRoundedService(options)
-        }
-        else if (preference?.key.equals(getString(R.string.pref_key_round_bottom_left))) {
-            options.bottomLeft = newValue as Boolean
-            (preference as CheckBoxPreference).isChecked = newValue
-            tryStartRoundedService(options)
-        }
-        else if (preference?.key.equals(getString(R.string.pref_key_round_bottom_right))) {
-            options.bottomRight = newValue as Boolean
-            (preference as CheckBoxPreference).isChecked = newValue
-            tryStartRoundedService(options)
+                return true
+            }
+            getString(R.string.pref_key_round_top_left) -> {
+                options.topLeft = newValue as Boolean
+                (preference as CheckBoxPreference).isChecked = newValue
+                tryStartRoundedService(options)
+            }
+            getString(R.string.pref_key_round_top_right) -> {
+                options.topRight = newValue as Boolean
+                (preference as CheckBoxPreference).isChecked = newValue
+                tryStartRoundedService(options)
+            }
+            getString(R.string.pref_key_round_bottom_left) -> {
+                options.bottomLeft = newValue as Boolean
+                (preference as CheckBoxPreference).isChecked = newValue
+                tryStartRoundedService(options)
+            }
+            getString(R.string.pref_key_round_bottom_right) -> {
+                options.bottomRight = newValue as Boolean
+                (preference as CheckBoxPreference).isChecked = newValue
+                tryStartRoundedService(options)
+            }
         }
         return false
     }
