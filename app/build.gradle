@@ -1,12 +1,13 @@
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
 
 android {
-    compileSdkVersion 25
-    buildToolsVersion "25.0.2"
+    compileSdkVersion 26
+    buildToolsVersion '26.0.2'
     defaultConfig {
         applicationId "com.jidogoon.roundedscreen"
-        minSdkVersion 14
+        minSdkVersion 15
         targetSdkVersion 25
         versionCode 1
         versionName "1.0"
@@ -24,20 +25,28 @@ android {
 }
 
 dependencies {
-    compile fileTree(dir: 'libs', include: ['*.jar'])
-    compile 'com.android.support:appcompat-v7:25.3.1'
-    compile 'com.android.support:preference-v7:25.3.1'
-    compile 'com.android.support:preference-v14:25.3.1'
-    compile 'com.android.support:support-v4:25.3.1'
-    compile "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
-    testCompile 'junit:junit:4.12'
-    androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
-        exclude group: 'com.android.support', module: 'support-annotations'
+    def supportVersion = "26.1.0"
+    def espressoVersion = "2.2.2"
+    def appCenterSdkVersion = '1.0.0'
+
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation "com.android.support:appcompat-v7:${supportVersion}"
+    implementation "com.android.support:preference-v7:${supportVersion}"
+    implementation "com.android.support:preference-v14:${supportVersion}"
+    implementation "com.android.support:support-v4:${supportVersion}"
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
+
+    implementation "com.microsoft.appcenter:appcenter-analytics:${appCenterSdkVersion}"
+    implementation "com.microsoft.appcenter:appcenter-crashes:${appCenterSdkVersion}"
+
+    testCompile "junit:junit:4.12"
+    androidTestCompile("com.android.support.test.espresso:espresso-core:${espressoVersion}", {
+        exclude group: "com.android.support", module: "support-annotations"
     })
-    androidTestCompile 'com.android.support.test.espresso:espresso-contrib:2.2.2', {
-        exclude group: 'com.android.support', module: 'support-annotations'
-        exclude group: 'com.android.support', module: 'support-v4'
-        exclude group: 'com.android.support', module: 'design'
-        exclude group: 'com.android.support', module: 'recyclerview-v7'
+    androidTestCompile "com.android.support.test.espresso:espresso-contrib:${espressoVersion}", {
+        exclude group: "com.android.support", module: "support-annotations"
+        exclude group: "com.android.support", module: "support-v4"
+        exclude group: "com.android.support", module: "design"
+        exclude group: "com.android.support", module: "recyclerview-v7"
     }
 }

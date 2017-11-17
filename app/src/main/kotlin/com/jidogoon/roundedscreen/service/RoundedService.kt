@@ -40,9 +40,9 @@ class RoundedService: Service() {
         roundedViewUI = null
     }
 
-    var roundedViewUI: RoundedView? = null
+    private var roundedViewUI: RoundedView? = null
 
-    fun showRoundedView(intent: Intent?) {
+    private fun showRoundedView(intent: Intent?) {
         val options = intent?.getParcelableExtra<RoundedViewOptions>(INTENT_KEY)
         if (roundedViewUI != null) {
             roundedViewUI?.invalidate(options!!)

@@ -14,8 +14,8 @@ import com.jidogoon.roundedscreen.utils.PreferenceUtils
  * Created by jidogoon on 2017. 5. 22..
  */
 class RoundedView() {
-    var context: Context? = null
-    var roundedView: View? = null
+    private lateinit var context: Context
+    private var roundedView: View? = null
 
     constructor(context: Context) : this() {
         this.context = context
@@ -30,7 +30,7 @@ class RoundedView() {
     }
 
     private fun getOptions(): RoundedViewOptions {
-        val ctx = context!!
+        val ctx = context
         val options = RoundedViewOptions()
         options.topLeft = PreferenceUtils.getSharedPreferenceBoolean(ctx, getString(R.string.pref_key_round_top_left), options.topLeft)
         options.topRight = PreferenceUtils.getSharedPreferenceBoolean(ctx, getString(R.string.pref_key_round_top_right), options.topRight)
@@ -40,9 +40,7 @@ class RoundedView() {
         return options
     }
 
-    private fun getString(@StringRes resId: Int): String {
-        return context?.getString(resId)!!
-    }
+    private fun getString(@StringRes resId: Int): String = context.getString(resId)
 
     private fun setContentView() {
         val inflater = LayoutInflater.from(context)
@@ -54,25 +52,25 @@ class RoundedView() {
                 WindowManager.LayoutParams.FLAG_LAYOUT_IN_SCREEN or
                         WindowManager.LayoutParams.FLAG_LAYOUT_INSET_DECOR,
                 PixelFormat.TRANSLUCENT)
-        val wm = context?.getSystemService(Context.WINDOW_SERVICE) as WindowManager
+        val wm = context.getSystemService(Context.WINDOW_SERVICE) as WindowManager
         wm.addView(roundedView, params)
     }
 
     fun invalidate(options: RoundedViewOptions) {
-        val vTopLeft = roundedView?.findViewById(R.id.vTopLeft)
-        val vTopRight = roundedView?.findViewById(R.id.vTopRight)
-        val vBottomLeft = roundedView?.findViewById(R.id.vBottomLeft)
-        val vBottomRight = roundedView?.findViewById(R.id.vBottomRight)
+        val vTopLeft = roundedView!!.findViewById<View>(R.id.vTopLeft)
+        val vTopRight = roundedView!!.findViewById<View>(R.id.vTopRight)
+        val vBottomLeft = roundedView!!.findViewById<View>(R.id.vBottomLeft)
+        val vBottomRight = roundedView!!.findViewById<View>(R.id.vBottomRight)
 
-        vTopLeft?.visibility = if (options.topLeft) View.VISIBLE else View.GONE
-        vTopRight?.visibility = if (options.topRight) View.VISIBLE else View.GONE
-        vBottomLeft?.visibility = if (options.bottomLeft) View.VISIBLE else View.GONE
-        vBottomRight?.visibility = if (options.bottomRight) View.VISIBLE else View.GONE
+        vTopLeft.visibility = if (options.topLeft) View.VISIBLE else View.GONE
+        vTopRight.visibility = if (options.topRight) View.VISIBLE else View.GONE
+        vBottomLeft.visibility = if (options.bottomLeft) View.VISIBLE else View.GONE
+        vBottomRight.visibility = if (options.bottomRight) View.VISIBLE else View.GONE
 
-        val lpTopLeft = vTopLeft?.layoutParams as RelativeLayout.LayoutParams
-        val lpTopRight = vTopRight?.layoutParams as RelativeLayout.LayoutParams
-        val lpBottomLeft = vBottomLeft?.layoutParams as RelativeLayout.LayoutParams
-        val lpBottomRight = vBottomRight?.layoutParams as RelativeLayout.LayoutParams
+        val lpTopLeft = vTopLeft.layoutParams as RelativeLayout.LayoutParams
+        val lpTopRight = vTopRight.layoutParams as RelativeLayout.LayoutParams
+        val lpBottomLeft = vBottomLeft.layoutParams as RelativeLayout.LayoutParams
+        val lpBottomRight = vBottomRight.layoutParams as RelativeLayout.LayoutParams
         lpTopLeft.width = options.size
         lpTopLeft.height = options.size
         lpTopRight.width = options.size
@@ -89,7 +87,7 @@ class RoundedView() {
 
     fun release() {
         if (roundedView != null) {
-            val wm = context?.getSystemService(Context.WINDOW_SERVICE) as WindowManager
+            val wm = context.getSystemService(Context.WINDOW_SERVICE) as WindowManager
             wm.removeView(roundedView)
             roundedView?.destroyDrawingCache()
             roundedView = null
